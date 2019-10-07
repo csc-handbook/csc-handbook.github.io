@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v3.8.5">
+    <title>Starter Template · Bootstrap</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+      var url_string = window.location.href
+      var url = new URL(url_string);
+      var idParam = url.searchParams.get("id");
+
+      $.getJSON( "https://cschandbook.azurewebsites.net/cscbase.json", function( data ) {
+
+      if (idParam) {
+
+        $(data[idParam].contenthtml).appendTo("#content");
+
+      } else {
+
+        var items = [];
+        $.each( data, function( key, val ) {
+
+          if ((val.link).length > 0) {
+            items.push( "<li id='" + key + "'><a href='?id="+key+"'>" + val.link + "</a></li>" );
+          }
+        });
+
+        $( "<ul/>", {
+          "class": "my-new-list",
+          html: items.join( "" )
+        }).appendTo( "body" );
+      }
+
+
+      });
+
+
+    });
+
+    </script>
+
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="starter-template.css" rel="stylesheet">
+  </head>
+  <body style="padding-top: 5rem;">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="index.html">Back to Home</a>
+    </nav>
+
+<main role="main" class="container">
+  <h1>Cyber Skills Handbook</h1>
+
+  <div id="content" class="starter-template">
+
+  </div>
+
+</main><!-- /.container -->
+
+
+</html>
